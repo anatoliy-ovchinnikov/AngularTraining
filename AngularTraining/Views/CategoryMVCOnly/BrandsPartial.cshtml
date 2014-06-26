@@ -1,0 +1,20 @@
+﻿@model AngularStart.Models.BrandViewModel
+
+<div class="span9">
+    <div class="row">
+        @if (Model.Brands != null)
+        {
+            foreach (var brand in Model.Brands)
+            {
+                <div class=" col-md-2">
+                    <a href="@Url.Action("Edit", "CategoryMVCOnly", new { id = brand.Id, redirect = Model.SelectedCategoryId })" class="thumbnail" id="brandItem">
+                        <img src="@brand.ImageUrl" />
+                        <div class="caption">
+                            @brand.Title
+                        </div>
+                    </a>
+                </div>
+            }
+        }
+    </div>
+</div>

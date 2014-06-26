@@ -1,0 +1,24 @@
+﻿@{
+    Layout = null;
+}
+<h2>Category Angular+MVC</h2>
+
+<br />
+<div class="row-fluid">
+    <div class="span3">
+        <ul ng-repeat="category in listCategory" class="nav nav-list">
+            <li ng-class="{ active : category.Title === selectCategory }" style="padding: 2px 2px 2px 2px">
+                <a data-ng-click="show_brands(category.Id)">
+                    <category-list-view></category-list-view>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="span9">
+        <div class="row">
+            <div class=" col-md-2" data-ng-repeat="brand in listBrands">
+                <brand-list-view></brand-list-view>
+            </div>
+        </div>
+    </div>
+</div>

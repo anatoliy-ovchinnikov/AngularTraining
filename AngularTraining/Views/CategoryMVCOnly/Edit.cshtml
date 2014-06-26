@@ -1,0 +1,32 @@
+﻿@model AngularStart.Models.SingleBrandViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+<h2>Edit MVC Only</h2>
+
+@using (Html.BeginForm("Edit", "CategoryMVCOnly", new { redirect = Model.SelectedCategoryId }, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken();
+    @Html.HiddenFor(model => model.CurrBrand.Id)
+    <div class="control-group" ng-class="{error: form.Title.$invalid}">
+        <label class="control-label" for="ImageUrl">Image</label>
+        <div class="controls">
+            <img src="@Model.CurrBrand.ImageUrl" width="150" height="150" id="ImageUrl" />
+        </div>
+        <br />
+        <label class="control-label" for="Title">Title</label>
+        <div class="controls">
+            @Html.TextBoxFor(model => model.CurrBrand.Title)
+        </div>
+
+    </div>
+    <div class="form-actions">
+        <button class="btn btn-primary" name="btn" value="Update">
+            Update
+        </button>
+        @*<back-button to="{{item.CategoryId}}" />*@
+
+        <a href="@Url.Action("Index", "CategoryMVCOnly", new { id = Model.SelectedCategoryId })" class="btn btn-danger">Cancel</a>
+
+    </div>
+}

@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <title>AngularStart</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body ng-app="main">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href='#/category'>AngularStart</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li data-ng-class="{active : activeViewPath==='/category'}"><a href=@Url.Action("Index", "Home")>CategoryAngularJs</a></li>
+                        <li><a href="@Url.Action("Index", "CategoryMVCOnly")">CategoryMVCOnly</a></li>
+                        <li><a href="~/ViewWithoutMVC/Index.html">CategoryAngularJsWithoutMVC</a></li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/app")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

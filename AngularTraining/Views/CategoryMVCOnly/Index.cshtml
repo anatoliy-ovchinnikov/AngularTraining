@@ -1,0 +1,41 @@
+﻿@model AngularStart.Models.CategoryViewModel
+@{
+    ViewBag.Title = "CategoryMVCOnly";
+}
+
+<h2>Category MVC Only</h2>
+
+<br />
+<div class="row-fluid">
+    <div class="span3">
+        <ul class="nav nav-list">
+            @foreach (var category in Model.Categories)
+            {
+                if (Model.SelectedCategoryId == category.Id)
+                {
+                <li class="active" style="padding: 2px 2px 2px 2px">
+                    <a href="@Url.Action("Index", "CategoryMVCOnly", new { id = category.Id })">
+                        <div class="row-fluid">
+                            <img src="@category.ImageUrl" width="50" height="50" style="padding-right: 7px" />
+                            @category.Title
+                        </div>
+                    </a>
+                </li>
+                }
+                else
+                {
+                <li style="padding: 2px 2px 2px 2px">
+                    <a href="@Url.Action("Index", "CategoryMVCOnly", new { id = category.Id })">
+                        <div class="row-fluid">
+                            <img src="@category.ImageUrl" width="50" height="50" style="padding-right: 7px" />
+                            @category.Title
+                        </div>
+                    </a>
+                </li>
+                }
+            }
+        </ul>
+    </div>
+    @{Html.RenderAction("BrandsPartial", "CategoryMVCOnly", new { id = Model.SelectedCategoryId });}
+
+</div>

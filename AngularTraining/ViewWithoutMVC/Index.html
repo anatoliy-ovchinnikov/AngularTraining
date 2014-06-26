@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="/Scripts/jquery-1.9.1.js"></script>
+    <script src="/Scripts/jquery-ui-1.8.24.js"></script>
+    <script src="/Scripts/angular.js"></script>
+    <script src="/Scripts/angular-ng-grid.js"></script>
+    <script src="/Scripts/angular-resource.js"></script>
+    <script src="/Scripts/angular-route.js"></script>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/bootstrap-responsive.css" rel="stylesheet" />
+
+    <title></title>
+</head>
+<body data-ng-app="mainIndex">
+    <a href="/Home/Index">CategoryMVC</a>
+
+    <div ng-view="">
+    </div>
+    
+    <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-body" style="text-align: center">
+            <img alt="Loading  Content" src="http://www.brinkster.com/images/server/loading.gif" width="100" height="100" />
+        </div>
+    </div>
+</body>
+
+<script src="/Scripts/app/app.js"></script>
+<script src="/Scripts/app/services.js"></script>
+<script src="/Scripts/app/directives.js"></script>
+<script src="/Scripts/app/category.js"></script>
+<script src="/Scripts/app/brand.js"></script>
+</html>
