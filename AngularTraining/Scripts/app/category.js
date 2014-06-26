@@ -1,6 +1,6 @@
 ﻿var CategoryController = function($scope, $location, CategoryService, $routeParams, Widget) {
-    $scope.listCategory = CategoryService.query({ categoryId: 2 });
-    $scope.redirectTo = $routeParams.selectedId || 0;
+    $scope.listCategory = CategoryService.query();
+    $scope.redirectTo = $routeParams.selectedId || 1;
 
     $scope.show_brands = function(id) {
         Widget.showLoad();
@@ -9,6 +9,8 @@
             $scope.listBrands = data.Brands;
             $scope.selectCategory = data.Title;
             $scope.redirectTo = data.Id;
+            Widget.hideLoad();
+        }, function() {
             Widget.hideLoad();
         });
     };

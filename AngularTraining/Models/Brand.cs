@@ -1,5 +1,7 @@
 ﻿namespace AngularStart.Models
 {
+    using System.ComponentModel.DataAnnotations.Schema;
+
     /// <summary>
     /// The class represents the brand.
     /// </summary>
@@ -9,10 +11,5 @@
         /// Gets or sets the category identifier.
         /// </summary>
         public int CategoryId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the category of the specified brand.
-        /// </summary>
-        public virtual Category Category { get; set; }
     }
 }

@@ -4,7 +4,7 @@
 
     public class BrandViewModel
     {
-        public List<Brand> Brands { get; set; }
+        public IEnumerable<Brand> Brands { get; set; }
         public int SelectedCategoryId { get; set; }
     }
 }

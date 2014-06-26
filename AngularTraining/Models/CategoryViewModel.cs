@@ -4,7 +4,7 @@
 
     public class CategoryViewModel
     {
-        public List<Category> Categories { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
         public int SelectedCategoryId { get; set; }
     }
 }

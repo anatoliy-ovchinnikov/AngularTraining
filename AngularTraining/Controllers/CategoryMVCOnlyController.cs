@@ -7,38 +7,38 @@
 
     public class CategoryMVCOnlyController : Controller
     {
-        private Repository db = InitializeRepository.GetRepository();
+        private readonly DataContext context = new DataContext();
         //
         // GET: /CategoryMVCOnly/
 
-        public ActionResult Index(int? id = 0)
+        public ActionResult Index(int? id = 1)
         {
             try
             {
-                Category activeCategory = db.categories.Single(cat => cat.Id == id);
-                var modelToView = new CategoryViewModel
+                var category = context.Categories.Find(id);
+                var model = new CategoryViewModel
                 {
-                    Categories = db.categories,
-                    SelectedCategoryId = activeCategory == null ? 0 : activeCategory.Id
+                    Categories = context.Categories,
+                    SelectedCategoryId = category.Id
                 };
-                return View(modelToView);
+                return View(model);
             }
             catch (Exception)
             {
                 return View("Error");
             }
-
         }
 
-        public ActionResult BrandsPartial(int? id = 0)
+        public ActionResult BrandsPartial(int? id = 1)
         {
             try
             {
-                Category currCategory = db.categories.Single(cat => cat.Id == id);
+                var category = context.Categories.Find(id);
+
                 var modelToView = new BrandViewModel
                 {
-                    Brands = currCategory.Brands.ToList(),
-                    SelectedCategoryId = (int)id
+                    Brands = id != 1 ? context.Brands.Where(x => x.CategoryId == id) : context.Brands,
+                    SelectedCategoryId = category.Id
                 };
                 return PartialView(modelToView);
             }
@@ -46,25 +46,25 @@
             {
                 return View("Error");
             }
-
         }
 
         //
         // GET: /CategoryMVCOnly/Edit/5
-
         public ActionResult Edit(int id, int redirect)
         {
-            Category curCategory = db.categories[0];
-            if (curCategory != null)
+            try
             {
                 var modelToView = new SingleBrandViewModel
                 {
-                    CurrBrand = curCategory.Brands.Single(br => br.Id == id),
+                    CurrBrand = context.Brands.Find(id),
                     SelectedCategoryId = redirect
                 };
                 return View(modelToView);
             }
-            return View("Error");
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
         //
@@ -75,16 +75,10 @@
         {
             try
             {
-                foreach (var category in db.categories)
-                {
-                    if (category.Brands != null)
-                    {
-                        foreach (var brand in category.Brands)
-                        {
-                            brand.Title = brand.Id == model.CurrBrand.Id ? model.CurrBrand.Title : brand.Title;
-                        }
-                    }
-                }
+                var brand = context.Brands.Find(model.CurrBrand.Id);
+                brand.Title = model.CurrBrand.Title;
+
+                context.SaveChanges();
 
                 return RedirectToAction("Index", new { id = redirect });
             }

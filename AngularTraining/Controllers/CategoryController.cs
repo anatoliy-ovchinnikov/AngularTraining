@@ -8,25 +8,27 @@
 
     public class CategoryController : ApiController
     {
-        private Repository db = InitializeRepository.GetRepository();
+        private readonly DataContext context = new DataContext();
+
         // GET api/base
         public IEnumerable<Category> Get()
         {
-            if (db==null)
-            {
-                throw new ArgumentNullException("Repository");
-            }
-            return db.categories;
+            if (context == null)
+                throw new ArgumentNullException("context");
+
+            return context.Categories;
         }
 
-        public Category Get(int id, int? limit = null, int offset = 0)
+        public Category Get(int id)
         {
-            if (db == null)
-            {
-                throw new ArgumentNullException("Repository");
-            }
-            var categ = db.categories.Single(cat => cat.Id == id);
-            return categ;
+            if (context == null)
+                throw new ArgumentNullException("context");
+
+            var category = context.Categories.Find(id);
+
+            category.Brands = id != 1 ? context.Brands.Where(x => x.CategoryId == id).ToList() : context.Brands.ToList();
+
+            return category;
         }
     }
 }
