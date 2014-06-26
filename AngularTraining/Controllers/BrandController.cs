@@ -12,16 +12,16 @@
         // GET api/brand
         public IEnumerable<Brand> Get()
         {
-            if (context == null)
+            if (this.context == null)
                 throw new ArgumentNullException("context");
 
-            return context.Brands;
+            return this.context.Brands;
         }
 
         // GET api/brand/5
         public Brand Get(int id)
         {
-            return context.Brands.Find(id);
+            return this.context.Brands.Find(id);
         }
 
         // PUT api/brand/5
@@ -30,11 +30,11 @@
             if (editBrand == null)
                 throw new ArgumentNullException("editBrand");
 
-            var brand = context.Brands.Find(id);
+            var brand = this.context.Brands.Find(id);
 
             brand.Title = editBrand.Title;
 
-            context.SaveChanges();
+            this.context.SaveChanges();
         }
 
     }

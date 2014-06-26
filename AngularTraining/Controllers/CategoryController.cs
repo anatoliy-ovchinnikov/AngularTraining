@@ -13,20 +13,20 @@
         // GET api/base
         public IEnumerable<Category> Get()
         {
-            if (context == null)
+            if (this.context == null)
                 throw new ArgumentNullException("context");
 
-            return context.Categories;
+            return this.context.Categories;
         }
 
         public Category Get(int id)
         {
-            if (context == null)
+            if (this.context == null)
                 throw new ArgumentNullException("context");
 
-            var category = context.Categories.Find(id);
+            var category = this.context.Categories.Find(id);
 
-            category.Brands = id != 1 ? context.Brands.Where(x => x.CategoryId == id).ToList() : context.Brands.ToList();
+            category.Brands = id != 1 ? this.context.Brands.Where(x => x.CategoryId == id).ToList() : this.context.Brands.ToList();
 
             return category;
         }
