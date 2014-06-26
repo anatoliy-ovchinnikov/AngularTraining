@@ -8,7 +8,7 @@
     <div class="span3">
         <ul ng-repeat="category in listCategory" class="nav nav-list">
             <li ng-class="{ active : category.Title === selectCategory }" style="padding: 2px 2px 2px 2px">
-                <a data-ng-click="show_brands(category.Id)">
+                <a data-ng-click="show_brands(category.Id)" id="navList_{{category.Id}}">
                     <category-list-view></category-list-view>
                 </a>
             </li>
