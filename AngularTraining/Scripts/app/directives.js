@@ -26,7 +26,7 @@ angularStartDirectives.directive('editBrandInfo', function () {
 angularStartDirectives.directive('editBrandControls', function () {
     return {
         restrict: 'E',
-        template: '<div class="form-actions"><button class="btn btn-primary" ng-click="form.title.$valid && save()">Update</button> <input type="button" id="btnCancel" class="btn btn-danger" value="Cancel" data-back-button /></div>'
+        template: '<div class="form-actions"><button id="updateBtn" class="btn btn-primary" ng-click="form.title.$valid && save()">Update</button> <input type="button" id="btnCancel" class="btn btn-danger" value="Cancel" data-back-button /></div>'
     };
 });
 
