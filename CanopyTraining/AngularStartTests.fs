@@ -8,6 +8,7 @@ start firefox
 
 "go to categories, click on specified category, assert brands count" &&& fun _ ->
 
+
     url "http://localhost:4416/#/category/"
 
     click "#navList_2"
